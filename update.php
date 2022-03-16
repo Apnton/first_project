@@ -2,6 +2,6 @@
 require 'database/QueryBuilder.php';
 
 $db = new QueryBuilder;
-$db->update($_POST);
+$db->update("tasks", $_POST);
 
 header("Location: /");

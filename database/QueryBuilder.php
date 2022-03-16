@@ -2,46 +2,61 @@
 
 class QueryBuilder
 {
-    public $db;
+    public $pdo;
 
     public function __construct()
     {
-       $this->db = new PDO('mysql:localhost=host;dbname=crud', 'root');
-        return $this->db;
+       $this->pdo = new PDO('mysql:localhost=host;dbname=crud', 'root');
+
     }
 
 
-    function getAll()
+    function all($table)
     {
-        $stmt = $this->db->prepare('SELECT * FROM tasks');
+        $stmt = $this->pdo->prepare("SELECT * FROM $table");
         $stmt->execute();
         return $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-    function getOne($id)
+    function getOne($table, $id)
     {
-        $stmt = $this->db->prepare('SELECT * FROM tasks WHERE id = :id');
+        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE id = :id");
         $stmt->execute($id);
         return $result = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    function remove($id)
+    function remove($table, $id)
     {
-        $stmt = $this->db->prepare('DELETE FROM tasks WHERE id = :id');
+        $stmt = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
         $stmt->execute($id);
     }
 
-    function store($data)
+    function store($table, $data)
     {
-        $stmt = $this->db->prepare("INSERT INTO tasks (title, content) VALUE (:title, :content)");
+        $keys = array_keys($data);
+        //created string title, content
+        $tableFields = implode(", ", $keys);
+        //created string :title, :content
+        $placeholders = ':'. implode(", :", $keys);
+
+        $stmt = $this->pdo->prepare("INSERT INTO $table ($tableFields) VALUE ($placeholders)");
         $stmt->execute($data);
     }
 
-    function update($data)
+    function update($table, $data)
     {
+        $fields = "";
+        foreach ($data as $keys =>$value )
+        {
+            // created title = :title, content = :content,
+            $fields .= $keys ." =:".$keys .", ";
 
-        $stmt = $this->db->prepare("UPDATE tasks SET title = :title, content = :content WHERE id =:id");
+        }
+        // created title = :title, content = :content
+        $fields = rtrim($fields, ' ,');
+
+        $stmt = $this->pdo->prepare("UPDATE $table SET $fields WHERE id =:id");
         $stmt->execute($data);
     }
 }

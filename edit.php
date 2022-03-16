@@ -1,7 +1,7 @@
 <?php
 require 'database/QueryBuilder.php';
 $db = new QueryBuilder;
-$task = $db->getOne($_GET);
+$task = $db->getOne("tasks", $_GET);
 
 
 ?>
