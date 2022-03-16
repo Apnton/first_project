@@ -1,3 +1,11 @@
+<?php
+require 'function.php';
+
+$task = getOne($_GET);
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,12 +21,15 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Edit Tasks</h1>
-            <form action="" method="post">
+            <form action="update.php" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control">
+                    <div class="form-group">
+                        <input name="id" type="hidden" value="<?=$task['id']?>" class="form-control">
+                    </div>
+                    <input name="title" type="text" value="<?=$task['title']?>" class="form-control">
                 </div>
                 <div class="form-group mt-4">
-                    <textarea class="form-control" ></textarea>
+                    <textarea name="content" class="form-control" ><?=$task['content']?></textarea>
                 </div>
                 <div class="form-group mt-4">
                     <button class="btn btn-success">Submit</button>

@@ -13,12 +13,12 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Create Tasks</h1>
-            <form action="" method="post">
+            <form action="add.php" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control">
+                    <input name="title" type="text" class="form-control">
                 </div>
                 <div class="form-group mt-4">
-                    <textarea class="form-control" ></textarea>
+                    <textarea name="content" class="form-control" ></textarea>
                 </div>
                 <div class="form-group mt-4">
                     <button class="btn btn-success">Submit</button>

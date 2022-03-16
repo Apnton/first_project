@@ -1,3 +1,11 @@
+<?php
+
+require 'function.php';
+$task = getOne($_GET);
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,9 +20,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Tasks</h1>
-            <p>sdfsdfsdfs</p>
-            <a class="btn btn-success" href="">back</a>
+            <h1><?=$task['title']?></h1>
+            <p><?=$task['content']?></p>
+            <a class="btn btn-success" href="/">back</a>
 
         </div>
     </div>
