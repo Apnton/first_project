@@ -1,7 +1,10 @@
 <?php
-require 'function.php';
 
-$tasks = getAll();
+require 'database/QueryBuilder.php';
+$db = new QueryBuilder;
+
+
+$tasks = $db->getAll();
 
 ?>
 

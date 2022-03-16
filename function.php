@@ -30,7 +30,7 @@ function remove($id)
     $stmt->execute($id);
 }
 
-function add($data)
+function store($data)
 {
     $pdo = db();
     $stmt = $pdo->prepare("INSERT INTO tasks (title, content) VALUE (:title, :content)");

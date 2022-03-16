@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Create Tasks</h1>
-            <form action="add.php" method="post">
+            <form action="store.php" method="post">
                 <div class="form-group">
                     <input name="title" type="text" class="form-control">
                 </div>
