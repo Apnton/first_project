@@ -21,6 +21,7 @@ class QueryBuilder
 
     function getOne($table, $id)
     {
+       ;
         $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE id = :id");
         $stmt->execute($id);
         return $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -58,5 +59,22 @@ class QueryBuilder
 
         $stmt = $this->pdo->prepare("UPDATE $table SET $fields WHERE id =:id");
         $stmt->execute($data);
+    }
+
+    function getUser($table, $data)
+    {
+        $fields = '';
+        foreach ($data as $key => $value)
+        {
+            //email = :email AND password = :password AND
+            $fields .= $key ." = :".$key ." AND ";
+
+        }
+        //email = :email AND password = :password
+        $fields = rtrim($fields, 'AND ');
+
+        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE $fields LIMIT 1");
+        $stmt->execute($data);
+        return $user = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
