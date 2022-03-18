@@ -1,4 +1,10 @@
+<?php
+session_start();
 
+
+
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,8 +19,14 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-6">
-            <h1 class="text-center">Sign in </h1>
-            <form class="mt-4 " action="signin.php" method="post">
+            <h1 class="text-center">Sign up </h1>
+                <?php if(isset($_SESSION['error'])): ?>
+                    <div class="alert alert-danger" role="alert">
+                   <?php echo $_SESSION['error']; unset($_SESSION['error']);?>
+                     </div>
+            <?php endif;?>
+
+            <form class="mt-4 " action="../../controllers/user/signup.php" method="post">
                 <div class="form-group">
                     <label class="form-label">Email address</label>
                     <input name="email" type="text" class="form-control">
@@ -24,7 +36,7 @@
                     <input name="password" type="password" class="form-control">
                 </div>
                 <div class="d-grid gap-2 col-4 mx-auto  mt-4 ">
-                    <button class="btn btn-primary">login</button>
+                    <button class="btn btn-primary">create account</button>
                 </div>
         </div>
             </form>

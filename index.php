@@ -1,9 +1,7 @@
 <?php
-
 require 'database/QueryBuilder.php';
-
 $db = new QueryBuilder;
-$tasks = $db->all('tasks')
+$tasks = $db->all('tasks');
 
 ?>
 
@@ -22,7 +20,7 @@ $tasks = $db->all('tasks')
     <div class="row">
         <div class="col-md-12">
             <h1>All Tasks</h1>
-            <a class="btn btn-success" href="create.php">Add Task</a>
+            <a class="btn btn-success" href="views/tasks/create.php">Add Task</a>
             <table class="table">
                 <thead>
                     <tr>
@@ -37,9 +35,9 @@ $tasks = $db->all('tasks')
                         <td><?=$task['id']?></td>
                         <td><?=$task['title']?></td>
                         <td class="col-4">
-                            <a class="btn btn-warning" href="edit.php?id=<?=$task['id']?>">Edit</a>
-                            <a class="btn btn-primary" href="show.php?id=<?=$task['id']?>">Show</a>
-                            <a onclick="return confirm('are you sure?');" class="btn btn-danger" href="delete.php?id=<?=$task['id']?>">Delete</a>
+                            <a class="btn btn-warning" href="views/tasks/edit.php?id=<?=$task['id']?>">Edit</a>
+                            <a class="btn btn-primary" href="views/tasks/show.php?id=<?=$task['id']?>">Show</a>
+                            <a onclick="return confirm('are you sure?');" class="btn btn-danger" href="../../controllers/task/delete.php?id=<?=$task['id']?>">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

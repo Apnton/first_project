@@ -1,10 +1,3 @@
-<?php
-require 'database/QueryBuilder.php';
-$db = new QueryBuilder;
-$task = $db->getOne("tasks", $_GET);
-
-
-?>
 
 <!doctype html>
 <html lang="en">
@@ -18,25 +11,24 @@ $task = $db->getOne("tasks", $_GET);
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Edit Tasks</h1>
-            <form action="update.php" method="post">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <h1 class="text-center">Sign in </h1>
+            <form class="mt-4 " action="../../controllers/user/signin.php" method="post">
                 <div class="form-group">
-                    <div class="form-group">
-                        <input name="id" type="hidden" value="<?=$task['id']?>" class="form-control">
-                    </div>
-                    <input name="title" type="text" value="<?=$task['title']?>" class="form-control">
+                    <label class="form-label">Email address</label>
+                    <input name="email" type="text" class="form-control">
                 </div>
                 <div class="form-group mt-4">
-                    <textarea name="content" class="form-control" ><?=$task['content']?></textarea>
+                    <label class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control">
                 </div>
-                <div class="form-group mt-4">
-                    <button class="btn btn-success">Submit</button>
+                <div class="d-grid gap-2 col-4 mx-auto  mt-4 ">
+                    <button class="btn btn-primary">login</button>
                 </div>
+        </div>
             </form>
 
-        </div>
     </div>
 </div>
 </body>

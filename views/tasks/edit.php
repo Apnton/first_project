@@ -1,3 +1,11 @@
+<?php
+require '../../database/QueryBuilder.php';
+$db = new QueryBuilder;
+$task = $db->getOne("tasks", $_GET);
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,19 +20,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Create Tasks</h1>
-            <form action="store.php" method="post">
+            <h1>Edit Tasks</h1>
+            <form action="../../controllers/task/update.php" method="post">
                 <div class="form-group">
-                    <input name="title" type="text" class="form-control">
+                    <div class="form-group">
+                        <input name="id" type="hidden" value="<?=$task['id']?>" class="form-control">
+                    </div>
+                    <input name="title" type="text" value="<?=$task['title']?>" class="form-control">
                 </div>
                 <div class="form-group mt-4">
-                    <textarea name="content" class="form-control" ></textarea>
+                    <textarea name="content" class="form-control" ><?=$task['content']?></textarea>
                 </div>
                 <div class="form-group mt-4">
                     <button class="btn btn-success">Submit</button>
                 </div>
             </form>
-           
+
         </div>
     </div>
 </div>

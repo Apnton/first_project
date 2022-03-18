@@ -47,6 +47,7 @@ class QueryBuilder
 
     function update($table, $data)
     {
+
         $fields = "";
         foreach ($data as $keys =>$value )
         {
