@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>All Tasks</h1>
-            <a class="btn btn-success" href="views/tasks/create.php">Add Task</a>
+            <a class="btn btn-success" href="tasks/addTask">Add Task</a>
             <table class="table">
                 <thead>
                 <tr>
@@ -20,9 +20,9 @@
                         <td><?=$task['id']?></td>
                         <td><?=$task['title']?></td>
                         <td class="col-4">
-                            <a class="btn btn-warning" href="views/tasks/edit.php?id=<?=$task['id']?>">Edit</a>
+                            <a class="btn btn-warning" href="tasks/edit/<?=$task['id']?>">Edit</a>
                             <a class="btn btn-primary" href="tasks/show/<?=$task['id']?>">Show</a>
-                            <a onclick="return confirm('are you sure?');" class="btn btn-danger" href="../../controllers/task/delete.php?id=<?=$task['id']?>">Delete</a>
+                            <a onclick="return confirm('are you sure?');" class="btn btn-danger" href="/tasks/remove/<?=$task['id']?>">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

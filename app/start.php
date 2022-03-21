@@ -22,7 +22,12 @@ $container = $containerBuilder->build();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/tasks', ["App\controllers\HomeController", "index"]);
+    $r->addRoute('GET', '/tasks/addTask', ["App\controllers\HomeController", "addTask"]);
+    $r->addRoute('POST', '/task/store', ["App\controllers\HomeController", "store"]);
+    $r->addRoute('GET', '/tasks/remove/{id}', ["App\controllers\HomeController", "remove"]);
     $r->addRoute('GET', '/tasks/show/{id}', ["App\controllers\HomeController", "show"]);
+    $r->addRoute('GET', '/tasks/edit/{id}', ["App\controllers\HomeController", "edit"]);
+    $r->addRoute('POST', '/tasks/edit/update', ["App\controllers\HomeController", "update"]);
     // {id} must be a number (\d+)
 });
 
